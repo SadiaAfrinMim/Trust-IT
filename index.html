@@ -4,18 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Trust-IT (BD) Ltd - Leading IT company in Bangladesh providing web development, mobile apps, and IT consulting services.">
-    <meta name="keywords" content="IT company Bangladesh, web development, mobile apps, IT consulting, Trust-IT">
+    <meta name="keywords" content="IT company Bangladesh, web development, mobile apps, IT consulting, Trust-IT, software development, digital solutions">
     <meta name="author" content="Trust-IT (BD) Ltd">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#14b8a6">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
     <meta property="og:title" content="Trust-IT (BD) Ltd - Innovative IT Solutions">
     <meta property="og:description" content="Your trusted partner in web development, mobile applications, and IT consulting.">
-    <meta property="og:image" content="https://via.placeholder.com/1200x630?text=Trust-IT+BD">
-    <meta property="og:url" content="https://trust-it-bd.netlify.app">
+    <meta property="og:image" content="https://trust-it-task.vercel.app/assets/logo.svg">
+    <meta property="og:url" content="https://trust-it-task.vercel.app">
+    <meta property="og:site_name" content="Trust-IT (BD) Ltd">
+
+    <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
-    <link rel="canonical" href="https://trust-it-bd.netlify.app">
+    <meta name="twitter:title" content="Trust-IT (BD) Ltd - Innovative IT Solutions">
+    <meta name="twitter:description" content="Your trusted partner in web development, mobile applications, and IT consulting.">
+    <meta name="twitter:image" content="https://trust-it-task.vercel.app/assets/logo.svg">
+
+    <link rel="canonical" href="https://trust-it-task.vercel.app">
+    <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
     <title>Trust-IT (BD) Ltd - Innovative IT Solutions in Bangladesh</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Skip to main content link for accessibility -->
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-teal-600 text-white px-4 py-2 rounded z-50">Skip to main content</a>
 
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -25,309 +41,95 @@
     </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
+    <!-- Custom CSS Files -->
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/navigation.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/interactions.css">
+    <link rel="stylesheet" href="css/responsive.css">
+
     <style>
-        html {
-            scroll-behavior: smooth;
-        }
-        body {
-            background: linear-gradient(135deg, #14b8a6 0%, #0f766e 100%);
-            min-height: 100vh;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            transition: background 0.3s ease;
-        }
-
-        body.dark {
-            background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
-        }
-
-        /* Dark mode specific enhancements */
-        .dark .glass-premium {
-            background: rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-        }
-
-        .dark .btn-premium {
-            background: linear-gradient(135deg, #2dd4bf, #14b8a6);
-            box-shadow: 0 4px 15px rgba(45, 212, 191, 0.3);
-        }
-
-        .dark .btn-premium:hover {
-            background: linear-gradient(135deg, #2dd4bf, #0891b2);
-            box-shadow: 0 8px 25px rgba(45, 212, 191, 0.4);
-        }
-
-        /* Modern Navbar Styles */
-        .animated-nav {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .animated-nav:hover {
-            box-shadow: 0 4px 40px rgba(0, 0, 0, 0.15);
-            transform: translateY(-1px);
-        }
-
-        .dark .animated-nav {
-            background: rgba(0, 0, 0, 0.95);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
-        }
-
-        .dark .animated-nav:hover {
-            box-shadow: 0 4px 40px rgba(0, 0, 0, 0.5);
-            transform: translateY(-1px);
-        }
-
-        /* Premium navigation link effects */
-        .nav-link:hover::after {
-            width: 100% !important;
-        }
-
-        .mobile-nav-link {
-            position: relative;
+        /* Critical CSS for initial render - minimal styles only */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
             overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
         }
 
-        .mobile-nav-link::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(20, 184, 166, 0.1), transparent);
-            transition: left 0.5s;
-        }
-
-        .mobile-nav-link:hover::before {
-            left: 100%;
-        }
-
-        /* Ensure smooth transitions for dark mode */
-        * {
-            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
-        }
-
-        /* Dark mode specific enhancements for better contrast */
-        .dark .text-premium {
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-        }
-
-        .dark .glass-premium {
-            background: rgba(0, 0, 0, 0.4);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(25px);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
-        }
-
-        .dark .card-premium:hover {
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
-        }
-
-        /* Enhanced dark mode scroll indicator */
-        .dark .scroll-indicator div {
-            border-color: rgba(255, 255, 255, 0.4);
-        }
-
-        /* Premium Glassmorphism */
-        .glass-premium {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-        }
-
-        .dark .glass-premium {
-            background: rgba(0, 0, 0, 0.2);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-        }
-
-        /* Premium Card Hover Effects */
-        .card-premium {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            transform: translateY(0);
-        }
-
-        .card-premium:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
-        }
-
-        /* Premium Button Effects */
-        .btn-premium {
-            background: linear-gradient(135deg, #14b8a6, #0f766e);
-            box-shadow: 0 4px 15px rgba(20, 184, 166, 0.3);
-            transition: all 0.3s ease;
-        }
-
-        .btn-premium:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(20, 184, 166, 0.4);
-        }
-
-        .btn-outline-premium {
-            border: 2px solid rgba(255, 255, 255, 0.8);
-            background: transparent;
-            transition: all 0.3s ease;
-        }
-
-        .btn-outline-premium:hover {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: rgba(255, 255, 255, 1);
-            transform: translateY(-2px);
-        }
-
-        /* Premium Typography */
-        .text-premium {
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        .heading-premium {
-            background: linear-gradient(135deg, #ffffff, #f8fafc);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .dark .heading-premium {
-            background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        /* Premium Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes slideInLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        .animate-fade-in-up {
-            animation: fadeInUp 0.8s ease-out forwards;
-        }
-
-        .animate-slide-in-left {
-            animation: slideInLeft 0.8s ease-out forwards;
-        }
-
-        /* Premium Scroll Indicator */
-        .scroll-indicator {
-            animation: bounce 2s infinite;
-        }
-
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {
-                transform: translateY(0);
-            }
-            40% {
-                transform: translateY(-10px);
-            }
-            60% {
-                transform: translateY(-5px);
-            }
-        }
-
-        /* Modern Navbar Styles */
-        .nav-link {
-            position: relative;
-            transition: all 0.3s ease;
-        }
-
-        .nav-link::before {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: linear-gradient(90deg, #14b8a6, #06b6d4);
-            transition: width 0.3s ease;
-        }
-
-        .nav-link:hover::before {
-            width: 100%;
-        }
-
-        /* Scroll progress bar */
-        #scrollProgress {
-            transition: transform 0.3s ease;
-        }
-
-        /* Loading animation for components */
-        .component-loading {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.6s ease;
-        }
-
-        .component-loaded {
-            opacity: 1;
-            transform: translateY(0);
+        .sr-only.focus:not-sr-only {
+            position: static;
+            width: auto;
+            height: auto;
+            padding: inherit;
+            margin: inherit;
+            overflow: visible;
+            clip: auto;
+            white-space: normal;
         }
     </style>
 </head>
 <body class="font-sans transition-colors duration-300">
     <!-- Navigation -->
-    <nav class="animated-nav fixed top-0 left-0 right-0 z-50">
+    <nav class="animated-nav fixed top-0 left-0 right-0 z-50" role="navigation" aria-label="Main navigation">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
                 <!-- Logo -->
                 <div class="flex-shrink-0">
-                    <a href="#hero">
-                        <img src="assets/logo.svg" alt="Trust-IT Logo" class="h-8 w-auto sm:h-10 md:h-12">
+                    <a href="#hero" aria-label="Trust-IT (BD) Ltd - Go to home section">
+                        <img src="assets/logo.svg" alt="Trust-IT (BD) Ltd Logo" class="h-8 w-auto sm:h-10 md:h-12" loading="lazy">
                     </a>
                 </div>
 
                 <!-- Desktop Navigation -->
                 <div class="hidden md:block">
-                    <div class="ml-10 flex items-baseline space-x-4">
-                        <a href="#hero" class="nav-link px-3 py-2 text-sm font-medium text-gray-900 dark:text-white hover:text-teal-600 dark:hover:text-teal-400 transition-colors duration-300">
-                            Home
-                        </a>
-                        <a href="#services" class="nav-link px-3 py-2 text-sm font-medium text-gray-900 dark:text-white hover:text-teal-600 dark:hover:text-teal-400 transition-colors duration-300">
-                            Services
-                        </a>
-                        <a href="#about" class="nav-link px-3 py-2 text-sm font-medium text-gray-900 dark:text-white hover:text-teal-600 dark:hover:text-teal-400 transition-colors duration-300">
-                            About
-                        </a>
-                        <a href="#contact" class="nav-link px-3 py-2 text-sm font-medium text-gray-900 dark:text-white hover:text-teal-600 dark:hover:text-teal-400 transition-colors duration-300">
-                            Contact
-                        </a>
-                    </div>
+                    <ul class="ml-10 flex items-baseline space-x-4" role="menubar">
+                        <li role="none">
+                            <a href="#hero" class="nav-link px-3 py-2 text-sm font-medium text-gray-900 dark:text-white hover:text-teal-600 dark:hover:text-teal-400 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 rounded" role="menuitem" aria-label="Navigate to home section">
+                                Home
+                            </a>
+                        </li>
+                        <li role="none">
+                            <a href="#services" class="nav-link px-3 py-2 text-sm font-medium text-gray-900 dark:text-white hover:text-teal-600 dark:hover:text-teal-400 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 rounded" role="menuitem" aria-label="Navigate to services section">
+                                Services
+                            </a>
+                        </li>
+                        <li role="none">
+                            <a href="#about" class="nav-link px-3 py-2 text-sm font-medium text-gray-900 dark:text-white hover:text-teal-600 dark:hover:text-teal-400 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 rounded" role="menuitem" aria-label="Navigate to about section">
+                                About
+                            </a>
+                        </li>
+                        <li role="none">
+                            <a href="#contact" class="nav-link px-3 py-2 text-sm font-medium text-gray-900 dark:text-white hover:text-teal-600 dark:hover:text-teal-400 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 rounded" role="menuitem" aria-label="Navigate to contact section">
+                                Contact
+                            </a>
+                        </li>
+                    </ul>
                 </div>
 
-                <!-- Dark Mode -->
+                <!-- Dark Mode & Mobile Menu -->
                 <div class="flex items-center space-x-4">
-                    <button id="darkModeToggle" class="p-2 rounded-lg bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors duration-300">
-                        <i class="fas fa-moon"></i>
+                    <button id="darkModeToggle"
+                            class="p-2 rounded-lg bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2"
+                            aria-label="Toggle between light and dark theme"
+                            type="button">
+                        <i class="fas fa-moon" aria-hidden="true"></i>
                     </button>
 
                     <!-- Mobile menu button -->
                     <div class="md:hidden">
-                        <button id="mobile-menu-button" class="p-2 rounded-md text-gray-900 dark:text-white hover:text-teal-600 dark:hover:text-teal-400 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-teal-500">
-                            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <button id="mobile-menu-button"
+                                class="p-2 rounded-md text-gray-900 dark:text-white hover:text-teal-600 dark:hover:text-teal-400 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-teal-500"
+                                aria-label="Toggle mobile navigation menu"
+                                aria-expanded="false"
+                                type="button">
+                            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                             </svg>
                         </button>
@@ -337,21 +139,29 @@
         </div>
 
         <!-- Mobile Navigation Menu -->
-        <div id="mobile-menu" class="md:hidden hidden bg-white dark:bg-gray-800 shadow-lg border-t border-gray-200 dark:border-gray-700">
-            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <a href="#hero" class="mobile-nav-link block px-3 py-2 text-base font-medium text-gray-900 dark:text-white hover:text-teal-600 dark:hover:text-teal-400 transition-colors duration-300">
-                    Home
-                </a>
-                <a href="#services" class="mobile-nav-link block px-3 py-2 text-base font-medium text-gray-900 dark:text-white hover:text-teal-600 dark:hover:text-teal-400 transition-colors duration-300">
-                    Services
-                </a>
-                <a href="#about" class="mobile-nav-link block px-3 py-2 text-base font-medium text-gray-900 dark:text-white hover:text-teal-600 dark:hover:text-teal-400 transition-colors duration-300">
-                    About
-                </a>
-                <a href="#contact" class="mobile-nav-link block px-3 py-2 text-base font-medium text-gray-900 dark:text-white hover:text-teal-600 dark:hover:text-teal-400 transition-colors duration-300">
-                    Contact
-                </a>
-            </div>
+        <div id="mobile-menu" class="md:hidden hidden bg-white dark:bg-gray-800 shadow-lg border-t border-gray-200 dark:border-gray-700" role="menu" aria-label="Mobile navigation menu">
+            <ul class="px-2 pt-2 pb-3 space-y-1 sm:px-3" role="menubar">
+                <li role="none">
+                    <a href="#hero" class="mobile-nav-link block px-3 py-2 text-base font-medium text-gray-900 dark:text-white hover:text-teal-600 dark:hover:text-teal-400 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 rounded" role="menuitem" aria-label="Navigate to home section">
+                        Home
+                    </a>
+                </li>
+                <li role="none">
+                    <a href="#services" class="mobile-nav-link block px-3 py-2 text-base font-medium text-gray-900 dark:text-white hover:text-teal-600 dark:hover:text-teal-400 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 rounded" role="menuitem" aria-label="Navigate to services section">
+                        Services
+                    </a>
+                </li>
+                <li role="none">
+                    <a href="#about" class="mobile-nav-link block px-3 py-2 text-base font-medium text-gray-900 dark:text-white hover:text-teal-600 dark:hover:text-teal-400 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 rounded" role="menuitem" aria-label="Navigate to about section">
+                        About
+                    </a>
+                </li>
+                <li role="none">
+                    <a href="#contact" class="mobile-nav-link block px-3 py-2 text-base font-medium text-gray-900 dark:text-white hover:text-teal-600 dark:hover:text-teal-400 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 rounded" role="menuitem" aria-label="Navigate to contact section">
+                        Contact
+                    </a>
+                </li>
+            </ul>
         </div>
     </nav>
 
@@ -360,125 +170,34 @@
         <div id="scrollProgress" class="h-full bg-gradient-to-r from-teal-500 to-cyan-500 transition-transform duration-300"></div>
     </div>
 
-    <div id="hero-container" class="component-loading"></div>
-    <div id="services-container" class="component-loading"></div>
-    <div id="about-container" class="component-loading"></div>
-    <div id="contact-container" class="component-loading"></div>
+    <main id="main-content" role="main">
+        <div id="hero-container" class="component-loading"></div>
+        <div id="services-container" class="component-loading"></div>
+        <div id="about-container" class="component-loading"></div>
+        <div id="contact-container" class="component-loading"></div>
+    </main>
+
     <div id="footer-container" class="component-loading"></div>
 
-    <script>
-        // Navbar functionality
-        // Dark mode toggle functionality
-        const darkModeToggle = document.getElementById('darkModeToggle');
-        const body = document.body;
 
-        darkModeToggle.addEventListener('click', () => {
-            body.classList.toggle('dark');
-            const icon = darkModeToggle.querySelector('i');
-            if (body.classList.contains('dark')) {
-                icon.className = 'fas fa-sun';
-                localStorage.setItem('darkMode', 'enabled');
-            } else {
-                icon.className = 'fas fa-moon';
-                localStorage.setItem('darkMode', 'disabled');
-            }
-        });
-
-        // Load dark mode preference from localStorage
-        if (localStorage.getItem('darkMode') === 'enabled') {
-            body.classList.add('dark');
-            darkModeToggle.querySelector('i').className = 'fas fa-sun';
-        }
-
-        // Mobile menu toggle
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-
-        mobileMenuButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
-
-        // Close mobile menu when clicking on a link
-        const mobileLinks = mobileMenu.querySelectorAll('a');
-        mobileLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
-            });
-        });
-
-        // Scroll progress bar
-        window.addEventListener('scroll', () => {
-            const scrollTop = window.pageYOffset;
-            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-            const scrollPercent = (scrollTop / docHeight) * 100;
-            document.getElementById('scrollProgress').style.transform = `scaleX(${scrollPercent / 100})`;
-        });
-
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Navbar background on scroll
-        window.addEventListener('scroll', () => {
-            const nav = document.querySelector('.animated-nav');
-            if (window.scrollY > 50) {
-                nav.classList.add('scrolled');
-            } else {
-                nav.classList.remove('scrolled');
-            }
-        });
-
-        // Load components
-        async function loadComponent(file, containerId) {
-            try {
-                const response = await fetch(file);
-                const html = await response.text();
-                document.getElementById(containerId).innerHTML = html;
-            } catch (error) {
-                console.error('Error loading component:', file, error);
-            }
-        }
-
-        // Load all components and initialize after loading
-        Promise.all([
-            loadComponent('components/hero.html', 'hero-container'),
-            loadComponent('components/services.html', 'services-container'),
-            loadComponent('components/about.html', 'about-container'),
-            loadComponent('components/contact.html', 'contact-container'),
-            loadComponent('components/footer.html', 'footer-container')
-        ]).then(() => {
-            // Add loaded class for smooth animations
-            const containers = ['hero-container', 'services-container', 'about-container', 'contact-container', 'footer-container'];
-            containers.forEach(id => {
-                const container = document.getElementById(id);
-                if (container) {
-                    container.classList.add('component-loaded');
-                }
-            });
-
-            // Trigger initialization of components that depend on DOM elements
-            if (window.initializeComponents) {
-                window.initializeComponents();
-            }
-        });
-    </script>
+    <!-- AOS Library for scroll animations -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <!-- Modular JavaScript -->
+    <script src="js/theme-manager.js"></script>
+    <script src="js/navigation-manager.js"></script>
+    <script src="js/scroll-manager.js"></script>
+    <script src="js/component-loader.js"></script>
+    <script src="js/performance.js"></script>
+    <script src="js/script.js"></script>
+
+    <!-- Initialize AOS -->
     <script>
         AOS.init({
             duration: 1000,
-            once: true
+            once: true,
+            offset: 50
         });
     </script>
-    <script src="js/script.js"></script>
 </body>
 </html>

@@ -1,175 +1,265 @@
-// Initialize after components are loaded
+/**
+ * Main Application Entry Point
+ * Initializes all managers and components
+ */
+
+// Global managers
+let themeManager;
+let navigationManager;
+let scrollManager;
+let componentLoader;
+
+/**
+ * Initialize all components and managers after DOM is ready
+ */
 function initializeComponents() {
     // Prevent multiple initializations
     if (window.componentsInitialized) return;
     window.componentsInitialized = true;
-    // Hamburger menu toggle
-    const menuToggle = document.getElementById('menuToggle');
-    const mobileMenu = document.getElementById('mobileMenu');
 
-    if (menuToggle && mobileMenu) {
-        menuToggle.addEventListener('click', () => {
-            const isExpanded = mobileMenu.classList.toggle('hidden');
-            menuToggle.setAttribute('aria-expanded', !isExpanded);
-        });
+    try {
+        // Initialize all managers
+        themeManager = new ThemeManager();
+        navigationManager = new NavigationManager();
+        scrollManager = new ScrollManager();
+
+        // Initialize form validation and other component-specific features
+        initializeFormValidation();
+        initializeVideoFallback();
+        initializeScrollAnimations();
+
+        console.log('🚀 All components initialized successfully');
+
+    } catch (error) {
+        console.error('❌ Error initializing components:', error);
+    }
+}
+
+/**
+ * Initialize contact form validation
+ */
+function initializeFormValidation() {
+    const contactForm = document.getElementById('contactForm');
+    if (!contactForm) return;
+
+    const formElements = {
+        name: document.getElementById('name'),
+        email: document.getElementById('email'),
+        message: document.getElementById('message'),
+        nameError: document.getElementById('nameError'),
+        emailError: document.getElementById('emailError'),
+        messageError: document.getElementById('messageError')
+    };
+
+    contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const validation = validateForm(formElements);
+        if (validation.isValid) {
+            handleFormSuccess(contactForm);
+        }
+    });
+
+    // Real-time validation
+    Object.keys(formElements).forEach(key => {
+        if (key.includes('Input') && formElements[key]) {
+            formElements[key].addEventListener('blur', () => {
+                validateField(key.replace('Input', '').toLowerCase(), formElements);
+            });
+        }
+    });
+}
+
+/**
+ * Validate entire form
+ */
+function validateForm(elements) {
+    let isValid = true;
+
+    // Name validation
+    if (!validateField('name', elements)) isValid = false;
+
+    // Email validation
+    if (!validateField('email', elements)) isValid = false;
+
+    // Message validation
+    if (!validateField('message', elements)) isValid = false;
+
+    return { isValid };
+}
+
+/**
+ * Validate individual field
+ */
+function validateField(fieldName, elements) {
+    const input = elements[fieldName + 'Input'];
+    const error = elements[fieldName + 'Error'];
+
+    if (!input || !error) return true;
+
+    let isValid = true;
+    const value = input.value.trim();
+
+    switch (fieldName) {
+        case 'name':
+            isValid = value.length >= 2;
+            break;
+        case 'email':
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            isValid = emailRegex.test(value);
+            break;
+        case 'message':
+            isValid = value.length >= 10;
+            break;
     }
 
-    // Dark mode toggle
-    const darkModeToggle = document.getElementById('darkModeToggle');
-    const mobileDarkModeToggle = document.getElementById('mobileDarkModeToggle');
-
-    // Check for saved theme preference or default to light mode
-    if (localStorage.getItem('color-theme') === 'dark' ||
-        (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-        document.documentElement.classList.add('dark');
+    if (isValid) {
+        error.classList.add('hidden');
+        input.classList.remove('border-red-500');
+        input.classList.add('border-green-500');
     } else {
-        document.documentElement.classList.remove('dark');
+        error.classList.remove('hidden');
+        input.classList.remove('border-green-500');
+        input.classList.add('border-red-500');
     }
 
-    // Function to handle dark mode toggle
-    function toggleDarkMode() {
-        // Toggle dark class
-        document.documentElement.classList.toggle('dark');
+    return isValid;
+}
 
-        // Update button title for accessibility
-        const isDark = document.documentElement.classList.contains('dark');
-        if (darkModeToggle) {
-            darkModeToggle.setAttribute('title', isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode');
+/**
+ * Handle successful form submission
+ */
+function handleFormSuccess(form) {
+    // Show success message
+    showNotification('Thank you for your message! We will get back to you soon.', 'success');
+
+    // Reset form
+    form.reset();
+
+    // Reset validation states
+    form.querySelectorAll('.border-red-500, .border-green-500').forEach(el => {
+        el.classList.remove('border-red-500', 'border-green-500');
+    });
+}
+
+/**
+ * Initialize video fallback for hero section
+ */
+function initializeVideoFallback() {
+    const heroVideo = document.querySelector('#hero video');
+    if (!heroVideo) return;
+
+    let fallbackTimeout;
+
+    heroVideo.addEventListener('error', function() {
+        console.log('Hero video failed to load, showing fallback background');
+        clearTimeout(fallbackTimeout);
+        this.style.display = 'none';
+        showNotification('Video failed to load, showing fallback content', 'warning');
+    });
+
+    heroVideo.addEventListener('loadeddata', function() {
+        console.log('Hero video loaded successfully');
+        clearTimeout(fallbackTimeout);
+    });
+
+    // Fallback if video doesn't load within 5 seconds
+    fallbackTimeout = setTimeout(() => {
+        if (heroVideo.readyState === 0) {
+            console.log('Hero video taking too long to load, showing fallback');
+            heroVideo.style.display = 'none';
         }
+    }, 5000);
+}
 
-        // Save preference to localStorage
-        if (isDark) {
-            localStorage.setItem('color-theme', 'dark');
-            console.log('🌙 Switched to dark mode');
-        } else {
-            localStorage.setItem('color-theme', 'light');
-            console.log('☀️ Switched to light mode');
-        }
-    }
+/**
+ * Initialize scroll-triggered animations
+ */
+function initializeScrollAnimations() {
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
 
-    // Desktop dark mode toggle
-    if (darkModeToggle) {
-        darkModeToggle.addEventListener('click', toggleDarkMode);
-    }
-
-    // Mobile dark mode toggle
-    if (mobileDarkModeToggle) {
-        mobileDarkModeToggle.addEventListener('click', toggleDarkMode);
-    }
-
-    // Mobile menu toggle
-    const mobileMenu = document.getElementById('mobileMenu');
-    const menuToggle = document.getElementById('menuToggle');
-
-    if (menuToggle && mobileMenu) {
-        menuToggle.addEventListener('click', () => {
-            const isHidden = mobileMenu.classList.contains('hidden');
-            mobileMenu.classList.toggle('hidden');
-            menuToggle.setAttribute('aria-expanded', !isHidden);
-        });
-    }
-
-    // Scroll progress bar
-    const scrollProgress = document.getElementById('scrollProgress');
-    if (scrollProgress) {
-        window.addEventListener('scroll', () => {
-            const scrollTop = window.pageYOffset;
-            const docHeight = document.body.offsetHeight - window.innerHeight;
-            const scrollPercent = (scrollTop / docHeight) * 100;
-            scrollProgress.style.transform = `scaleX(${scrollPercent / 100})`;
-        });
-    }
-
-
-
-    // Smooth scrolling for navigation links
-    const navLinks = document.querySelectorAll('.nav-link, a[href^="#"]');
-    navLinks.forEach(link => {
-        link.addEventListener('click', (e) => {
-            e.preventDefault();
-            const targetId = link.getAttribute('href').substring(1);
-            const targetSection = document.getElementById(targetId);
-
-            if (targetSection) {
-                const offsetTop = targetSection.offsetTop - 64; // Account for fixed navbar
-                window.scrollTo({
-                    top: offsetTop,
-                    behavior: 'smooth'
-                });
-
-                // Close mobile menu if open
-                if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
-                    menuToggle.click();
-                }
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animate-fade-in-up');
             }
         });
+    }, observerOptions);
+
+    // Observe elements that should animate on scroll
+    document.querySelectorAll('.animate-on-scroll').forEach(el => {
+        observer.observe(el);
     });
+}
+
+/**
+ * Show notification to user
+ */
+function showNotification(message, type = 'info') {
+    const notification = document.createElement('div');
+    notification.className = `fixed top-4 right-4 z-50 p-4 rounded-lg shadow-lg transition-all duration-300 ${
+        type === 'success' ? 'bg-green-500 text-white' :
+        type === 'error' ? 'bg-red-500 text-white' :
+        type === 'warning' ? 'bg-yellow-500 text-black' :
+        'bg-blue-500 text-white'
+    }`;
+    notification.innerHTML = `
+        <div class="flex items-center">
+            <i class="fas ${
+                type === 'success' ? 'fa-check-circle' :
+                type === 'error' ? 'fa-exclamation-circle' :
+                type === 'warning' ? 'fa-exclamation-triangle' :
+                'fa-info-circle'
+            } mr-2"></i>
+            <span>${message}</span>
+        </div>
+    `;
+
+    document.body.appendChild(notification);
+
+    // Auto remove after 5 seconds
+    setTimeout(() => {
+        notification.style.opacity = '0';
+        setTimeout(() => notification.remove(), 300);
+    }, 5000);
+}
+
+/**
+ * Utility function for debounced execution
+ */
+function debounce(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+        const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
+}
+
+/**
+ * Utility function for throttled execution
+ */
+function throttle(func, wait) {
+    let inThrottle;
+    return function(...args) {
+        if (!inThrottle) {
+            func.apply(this, args);
+            inThrottle = true;
+            setTimeout(() => inThrottle = false, wait);
+        }
+    };
 }
 
 // Expose globally for index.html
 window.initializeComponents = initializeComponents;
 
-// Components will be initialized after loading via window.initializeComponents()
-
-// Video error handling
-const heroVideo = document.querySelector('#hero video');
-if (heroVideo) {
-    heroVideo.addEventListener('error', function() {
-        console.log('Hero video failed to load, showing fallback background');
-        this.style.display = 'none';
-    });
-
-    heroVideo.addEventListener('loadeddata', function() {
-        console.log('Hero video loaded successfully');
-    });
-
-    // Fallback if video doesn't load within 3 seconds
-    setTimeout(() => {
-        if (heroVideo.readyState === 0) {
-            console.log('Hero video taking too long to load, showing fallback');
-            heroVideo.style.display = 'none';
-        }
-    }, 3000);
-}// Form validation
-const contactForm = document.getElementById('contactForm');
-const nameInput = document.getElementById('name');
-const emailInput = document.getElementById('email');
-const messageInput = document.getElementById('message');
-const nameError = document.getElementById('nameError');
-const emailError = document.getElementById('emailError');
-const messageError = document.getElementById('messageError');
-
-contactForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    let isValid = true;
-
-    // Name validation
-    if (nameInput.value.trim() === '') {
-        nameError.classList.remove('hidden');
-        isValid = false;
-    } else {
-        nameError.classList.add('hidden');
-    }
-
-    // Email validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(emailInput.value.trim())) {
-        emailError.classList.remove('hidden');
-        isValid = false;
-    } else {
-        emailError.classList.add('hidden');
-    }
-
-    // Message validation
-    if (messageInput.value.trim() === '') {
-        messageError.classList.remove('hidden');
-        isValid = false;
-    } else {
-        messageError.classList.add('hidden');
-    }
-
-    if (isValid) {
-        alert('Thank you for your message! We will get back to you soon.');
-        contactForm.reset();
-    }
+// Initialize component loader immediately
+document.addEventListener('DOMContentLoaded', () => {
+    componentLoader = new ComponentLoader();
 });
