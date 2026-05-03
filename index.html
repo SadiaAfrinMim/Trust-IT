@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Trust-IT (BD) Ltd - Leading IT company in Bangladesh providing web development, mobile apps, and IT consulting services.">
+    <meta name="keywords" content="IT company Bangladesh, web development, mobile apps, IT consulting, Trust-IT">
+    <meta name="author" content="Trust-IT (BD) Ltd">
+    <meta property="og:title" content="Trust-IT (BD) Ltd - Innovative IT Solutions">
+    <meta property="og:description" content="Your trusted partner in web development, mobile applications, and IT consulting.">
+    <meta property="og:image" content="https://via.placeholder.com/1200x630?text=Trust-IT+BD">
+    <meta property="og:url" content="https://trust-it-bd.netlify.app">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="canonical" href="https://trust-it-bd.netlify.app">
+    <title>Trust-IT (BD) Ltd - Innovative IT Solutions in Bangladesh</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class'
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            background: linear-gradient(135deg, #14b8a6 0%, #0f766e 100%);
+            min-height: 100vh;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            transition: background 0.3s ease;
+        }
+
+        body.dark {
+            background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+        }
+
+        /* Dark mode specific enhancements */
+        .dark .glass-premium {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .dark .btn-premium {
+            background: linear-gradient(135deg, #2dd4bf, #14b8a6);
+            box-shadow: 0 4px 15px rgba(45, 212, 191, 0.3);
+        }
+
+        .dark .btn-premium:hover {
+            background: linear-gradient(135deg, #2dd4bf, #0891b2);
+            box-shadow: 0 8px 25px rgba(45, 212, 191, 0.4);
+        }
+
+        /* Modern Navbar Styles */
+        .animated-nav {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .animated-nav:hover {
+            box-shadow: 0 4px 40px rgba(0, 0, 0, 0.15);
+            transform: translateY(-1px);
+        }
+
+        .dark .animated-nav {
+            background: rgba(0, 0, 0, 0.95);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .dark .animated-nav:hover {
+            box-shadow: 0 4px 40px rgba(0, 0, 0, 0.5);
+            transform: translateY(-1px);
+        }
+
+        /* Premium navigation link effects */
+        .nav-link:hover::after {
+            width: 100% !important;
+        }
+
+        .mobile-nav-link {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mobile-nav-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(20, 184, 166, 0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .mobile-nav-link:hover::before {
+            left: 100%;
+        }
+
+        /* Ensure smooth transitions for dark mode */
+        * {
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+        }
+
+        /* Dark mode specific enhancements for better contrast */
+        .dark .text-premium {
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .dark .glass-premium {
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(25px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        .dark .card-premium:hover {
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Enhanced dark mode scroll indicator */
+        .dark .scroll-indicator div {
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+
+        /* Premium Glassmorphism */
+        .glass-premium {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .dark .glass-premium {
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Premium Card Hover Effects */
+        .card-premium {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: translateY(0);
+        }
+
+        .card-premium:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Premium Button Effects */
+        .btn-premium {
+            background: linear-gradient(135deg, #14b8a6, #0f766e);
+            box-shadow: 0 4px 15px rgba(20, 184, 166, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .btn-premium:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(20, 184, 166, 0.4);
+        }
+
+        .btn-outline-premium {
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            background: transparent;
+            transition: all 0.3s ease;
+        }
+
+        .btn-outline-premium:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 1);
+            transform: translateY(-2px);
+        }
+
+        /* Premium Typography */
+        .text-premium {
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .heading-premium {
+            background: linear-gradient(135deg, #ffffff, #f8fafc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .dark .heading-premium {
+            background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Premium Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .animate-fade-in-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        .animate-slide-in-left {
+            animation: slideInLeft 0.8s ease-out forwards;
+        }
+
+        /* Premium Scroll Indicator */
+        .scroll-indicator {
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+
+        /* Modern Navbar Styles */
+        .nav-link {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #14b8a6, #06b6d4);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::before {
+            width: 100%;
+        }
+
+        /* Scroll progress bar */
+        #scrollProgress {
+            transition: transform 0.3s ease;
+        }
+
+        /* Loading animation for components */
+        .component-loading {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+
+        .component-loaded {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="font-sans transition-colors duration-300">
+    <div id="nav-container" class="component-loading"></div>
+    <div id="hero-container" class="component-loading"></div>
+    <div id="services-container" class="component-loading"></div>
+    <div id="about-container" class="component-loading"></div>
+    <div id="contact-container" class="component-loading"></div>
+    <div id="footer-container" class="component-loading"></div>
+
+    <script>
+        // Load components
+        async function loadComponent(file, containerId) {
+            try {
+                const response = await fetch(file);
+                const html = await response.text();
+                document.getElementById(containerId).innerHTML = html;
+            } catch (error) {
+                console.error('Error loading component:', file, error);
+            }
+        }
+
+        // Load all components and initialize after loading
+        Promise.all([
+            loadComponent('components/nav.html', 'nav-container'),
+            loadComponent('components/hero.html', 'hero-container'),
+            loadComponent('components/services.html', 'services-container'),
+            loadComponent('components/about.html', 'about-container'),
+            loadComponent('components/contact.html', 'contact-container'),
+            loadComponent('components/footer.html', 'footer-container')
+        ]).then(() => {
+            // Add loaded class for smooth animations
+            const containers = ['nav-container', 'hero-container', 'services-container', 'about-container', 'contact-container', 'footer-container'];
+            containers.forEach(id => {
+                const container = document.getElementById(id);
+                if (container) {
+                    container.classList.add('component-loaded');
+                }
+            });
+
+            // Trigger initialization of components that depend on DOM elements
+            if (window.initializeComponents) {
+                window.initializeComponents();
+            }
+        });
+    </script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+    </script>
+    <script src="js/script.js"></script>
+</body>
+</html>

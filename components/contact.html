@@ -1,0 +1,42 @@
+    <!-- Contact Form -->
+    <section id="contact" class="py-24 bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16 animate-fade-in-up">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4 text-gray-800 dark:text-white">
+                    Get In <span class="text-teal-600">Touch</span>
+                </h2>
+                <p class="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+                    Ready to transform your business? Let's discuss your project
+                </p>
+            </div>
+
+            <div class="max-w-2xl mx-auto">
+                <div class="glass-premium p-8 md:p-12 rounded-3xl shadow-2xl animate-fade-in-up" style="animation-delay: 0.2s;">
+                    <form id="contactForm">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                            <div>
+                                <label for="name" class="block text-gray-700 dark:text-gray-300 font-semibold mb-3 text-lg">Name</label>
+                                <input type="text" id="name" name="name" class="w-full px-6 py-4 border border-gray-300 dark:border-gray-600 rounded-2xl focus:outline-none focus:ring-2 focus:ring-teal-500 dark:bg-gray-700 dark:text-white text-lg transition-all duration-300 glass-premium">
+                                <span class="text-red-500 text-sm hidden mt-2 block" id="nameError">Name is required</span>
+                            </div>
+                            <div>
+                                <label for="email" class="block text-gray-700 dark:text-gray-300 font-semibold mb-3 text-lg">Email</label>
+                                <input type="email" id="email" name="email" class="w-full px-6 py-4 border border-gray-300 dark:border-gray-600 rounded-2xl focus:outline-none focus:ring-2 focus:ring-teal-500 dark:bg-gray-700 dark:text-white text-lg transition-all duration-300 glass-premium">
+                                <span class="text-red-500 text-sm hidden mt-2 block" id="emailError">Valid email is required</span>
+                            </div>
+                        </div>
+
+                        <div class="mb-8">
+                            <label for="message" class="block text-gray-700 dark:text-gray-300 font-semibold mb-3 text-lg">Message</label>
+                            <textarea id="message" name="message" rows="5" class="w-full px-6 py-4 border border-gray-300 dark:border-gray-600 rounded-2xl focus:outline-none focus:ring-2 focus:ring-teal-500 resize-none dark:bg-gray-700 dark:text-white text-lg transition-all duration-300 glass-premium" placeholder="Tell us about your project..."></textarea>
+                            <span class="text-red-500 text-sm hidden mt-2 block" id="messageError">Message is required</span>
+                        </div>
+
+                        <button type="submit" class="w-full btn-premium text-white py-4 px-8 rounded-2xl font-bold text-lg hover:scale-105 transition-all duration-300">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
