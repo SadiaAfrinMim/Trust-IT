@@ -8,10 +8,17 @@ A responsive and visually appealing landing page for Trust-IT (BD) Ltd, demonstr
 - **CSS3**: Custom styles with Tailwind CSS framework
 - **JavaScript (Vanilla)**: Form validation, theme switching, and interactive features
 
+## Prerequisites
+- Modern web browser (Chrome, Firefox, Safari, Edge)
+- Internet connection (for external CDN resources like Tailwind CSS and Font Awesome)
+
 ## Instructions to Run the Project
 1. Download or clone the project files
 2. Open `index.html` in any modern web browser
 3. The page will load with all features functional
+
+## Live Demo
+The project is deployed and accessible at: [https://trust-it-task.vercel.app](https://trust-it-task.vercel.app)
 
 ## Features Included
 - Responsive navigation with mobile hamburger menu
